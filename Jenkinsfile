@@ -24,8 +24,8 @@ pipeline {
                     git pull
                     git config user.email "jenkins@avalanchemc.org"
                     git config user.name "Jenkins"
-                    rm -rf Sugarcane-Server
-                    rm -rf Sugarcane-API
+                    del Sugarcane-Server
+                    del Sugarcane-API
                     ./gradlew printMinecraftVersionAP applyPatches
                     '''
                 }
@@ -37,8 +37,8 @@ pipeline {
             steps {
                         //sh'''
                         ./gradlew printMinecraftVersionBD build paperclipJar :Sugarcane-API:publishMavenPublicationToMavenRepository publishToMavenLocal
-                        mkdir -p "./target"
-                        cp -v "sugarcane-paperclip.jar" "./target/sugarcane-paperclip-b$BUILD_NUMBER.jar"
+                        mkdir "./target"
+                        copy /v "sugarcane-paperclip.jar" "./target/sugarcane-paperclip-b$BUILD_NUMBER.jar"
                         '''
             }
         }
