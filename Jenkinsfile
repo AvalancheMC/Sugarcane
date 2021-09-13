@@ -1,11 +1,6 @@
 pipeline {
     agent { label 'master' }
     options { timestamps() }
-
-   environment {
-        discord_webhook1 = credentials('discord_webhook')
-    }
-    
     stages {
         stage('Cleanup') {
             tools {
