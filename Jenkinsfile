@@ -8,8 +8,8 @@ pipeline {
             }
             steps {
                 // scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*') // This breaks building
-                sh 'git config --global gc.auto 0'
-                sh 'rm -rf ./target'
+                //sh 'git config --global gc.auto 0'
+                //sh 'rm -rf ./target'
             }
         }
         stage('Decompile & apply patches') {
@@ -17,7 +17,7 @@ pipeline {
                 jdk "JDK 16"
             }
             steps {
-                    sh '''
+                    //sh '''
                     git checkout ${BRANCH_NAME}
                     git reset --hard
                     git fetch 
@@ -35,7 +35,7 @@ pipeline {
                 jdk "JDK 16"
             }
             steps {
-                        sh'''
+                        //sh'''
                         ./gradlew printMinecraftVersionBD build paperclipJar :Sugarcane-API:publishMavenPublicationToMavenRepository publishToMavenLocal
                         mkdir -p "./target"
                         cp -v "sugarcane-paperclip.jar" "./target/sugarcane-paperclip-b$BUILD_NUMBER.jar"
